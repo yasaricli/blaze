@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     uglify  = require('gulp-uglify'),
     concat  = require('gulp-concat'),
+    header  = require("gulp-header"),
 
     FILES = [
       'src/main.js',
