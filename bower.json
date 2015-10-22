@@ -1,9 +1,7 @@
 {
   "name": "blaze",
   "version": "0.0.1",
-  "main": [
-    "dist/blaze.js"
-  ],
+  "main": ["target/blaze.js"],
   "dependencies": {},
   "ignore": [
     ".*",
