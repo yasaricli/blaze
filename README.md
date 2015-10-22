@@ -38,8 +38,18 @@ At this point, you should now have a `build/` directory populated with everythin
 
 ## Installation
 
+Simply reference the `JavaScript` file using a `<script>` tag somewhere on your `HTML` pages. For example,
+
+```html
+<script type='text/javascript' src='blaze.js'></script>
+```
+
 If you'd like to use [bower](http://bower.io), it's as easy as:
 
+`Blaze` is available through the `Bower` package manager. Learn more about using and installing [bower](http://bower.io). To add `blaze` to your application, you can run:
+
 ```sh
-bower install --save blaze
+bower install blaze
 ```
+
+Additionally, you can include the `--save` option to add `blaze` to your `bower.json` file.
