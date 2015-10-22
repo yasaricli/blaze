@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Blaze</title>
+
+    <!-- JAVASCRIPT -->
+    <script src="../../build/blaze.js"></script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type='text/spacebars' name="main">
+      Sum <b>{{ sum 5 10 }}</b>
+    </script>
+
+    <script type="text/javascript">
+
+      // Compile all Templates
+      Blaze.compileTemplates();
+
+      Template.main.helpers({
+        sum: function(a, b) {
+          return (a + b);
+        }
+      });
+
+      // Render
+      Blaze.render(Template.main, document.getElementById('main'));
+    </script>
+  </body>
+</html>

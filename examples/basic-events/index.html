@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Blaze</title>
+
+    <!-- JAVASCRIPT -->
+    <script src="../../build/blaze.js"></script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type='text/spacebars' name="main">
+      <div class="click-me">
+        <h1>Say Hello! Click Me</h1>
+      </div>
+    </script>
+
+    <script type="text/javascript">
+
+      // Compile all Templates
+      Blaze.compileTemplates();
+
+      Template.main.events({
+        'click .click-me': function(event, template) {
+          alert('Say Hello');
+        }
+      });
+
+      // Render
+      Blaze.render(Template.main, document.getElementById('main'));
+    </script>
+  </body>
+</html>

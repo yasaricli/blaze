@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Blaze</title>
+
+    <!-- JAVASCRIPT -->
+    <script src="../../build/blaze.js"></script>
+    
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type='text/spacebars' name="main">
+      You spent <b>{{ seconds }}</b> seconds on this page.
+    </script>
+
+    <script type="text/javascript">
+      var counter = new ReactiveVar(0);
+
+      // Compile all Templates
+      Blaze.compileTemplates();
+
+      // HELPERS
+      Template.main.helpers({
+        seconds: function() {
+          return counter.get();
+        }
+      });
+
+      // ON RENDERED MAIN TEMPLATE
+      Template.main.onRendered(function() {
+        setInterval(function() {
+          counter.set(counter.get() + 1);
+        }, 1000);
+      });
+
+      // Render
+      Blaze.render(Template.main, document.getElementById('main'));
+    </script>
+  </body>
+</html>
