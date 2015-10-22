@@ -1,7 +1,7 @@
 # blaze
 Live HTML templates.
 
-What you need to build your own blaze
+What you need to build your own `blaze`
 --------------------------------------
 
 In order to build blaze, you need to have the latest Node.js/npm and git 1.7 or later. Earlier versions might work, but are not supported.
@@ -12,7 +12,7 @@ OS X users should install [Homebrew](http://brew.sh/). Once Homebrew is installe
 and `brew install node` to install Node.js.
 
 
-How to build your own blaze
+How to build your own `blaze`
 ----------------------------
 
 Clone a copy of the main Blaze git repo by running:
