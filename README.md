@@ -36,7 +36,7 @@ gulp
 
 At this point, you should now have a `build/` directory populated with everything you need to use Blaze.
 
-## Installation
+## Installation for your projects
 
 `Blaze` is available through the `Bower` package manager. Learn more about using and installing [bower](http://bower.io). To add `blaze` to your application, you can run:
 
