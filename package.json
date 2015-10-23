@@ -1,8 +1,12 @@
 {
   "name": "blaze",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Live HTML templates.",
   "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yasaricli/blaze.git"
+  },
   "directories": {
     "example": "examples"
   },

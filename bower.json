@@ -1,12 +1,11 @@
 {
   "name": "blaze",
   "version": "0.0.1",
-  "main": "target/blaze.js",
+  "main": "target/blaze.min.js",
   "dependencies": {},
   "ignore": [
     ".*",
     "*.json",
-    "*.md",
     "src",
     "examples",
     "gulpfile.js"

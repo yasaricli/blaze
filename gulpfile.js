@@ -2,6 +2,9 @@ var gulp = require('gulp'),
     uglify  = require('gulp-uglify'),
     concat  = require('gulp-concat'),
     header  = require("gulp-header"),
+    fs = require('fs'),
+
+    PACKAGE = JSON.parse(fs.readFileSync('package.json', 'utf8')),
 
     FILES = [
       'src/main.js',
@@ -33,10 +36,18 @@ var gulp = require('gulp'),
       'src/initialize.js'
     ];
 
+    BANNER = ['/**',
+      ' * <%= package.name %> - <%= package.description %>',
+      ' * @version v<%= package.version %>',
+      ' * @link <%= package.repository.url %>',
+      ' */',
+      ''].join('\n');
+
 gulp.task('js', function () {
   gulp.src(FILES)
     .pipe(uglify())
-    .pipe(concat('blaze.js'))
+    .pipe(concat('blaze.min.js'))
+    .pipe(header(BANNER, { package : PACKAGE }))
     .pipe(gulp.dest('build'));
 });
 
