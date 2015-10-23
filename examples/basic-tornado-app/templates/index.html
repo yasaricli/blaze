@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <h1>Hello, world - Tornado Blaze Application</h1>
+
+  <div id="Clock"></div>
+
+  <script type="text/javascript">
+    var date = new ReactiveVar(new Date);
+
+    // every second update the reactive time and date value
+    setInterval(function () { date.set(new Date); }, 1000);
+
+    Template.clock.helpers({
+      hours: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      degrees: function () { return 30 * this; },
+      handData: function () {
+        var time = date.get();
+        return { hourDegrees: time.getHours() * 30,
+                 minuteDegrees: time.getMinutes() * 6,
+                 secondDegrees: time.getSeconds() * 6 };
+      },
+      radial: function (angleDegrees, startFraction, endFraction) {
+        var r = 50;
+        var radians = (angleDegrees-90) / 180 * Math.PI;
+        return {
+          x1: r * startFraction * Math.cos(radians),
+          y1: r * startFraction * Math.sin(radians),
+          x2: r * endFraction * Math.cos(radians),
+          y2: r * endFraction * Math.sin(radians)
+        };
+      }
+    });
+
+    // Render
+    Blaze.render(Template.clock, document.getElementById('Clock'));
+  </script>
+{% end %}
+
+{% block templates %}
+  <script type='text/spacebars' name="clock">
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="-55 -55 110 110">
+      <circle style="stroke: black; fill: #eee;" cx="0" cy="0" r="50"/>
+
+      {{!#with handData}}
+        <line {{!radial hourDegrees 0 .55}} style="stroke-width: 3px; stroke: green;" />
+        <line {{!radial minuteDegrees 0 .85}} style="stroke-width: 2px; stroke: blue;" />
+        <line {{!radial secondDegrees 0 .95}}style="stroke-width: 1px; stroke: red;" />
+      {{!/with}}
+
+      {{!#each hours}}
+        <line {{!radial degrees 0.9 1}} style="stroke-width: 3px; stroke: black;"/>
+      {{!/each}}
+    </svg>
+  </script>
+{% end %}
