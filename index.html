@@ -50,10 +50,30 @@
       </p>
 
 
+      <script type='text/spacebars' name="example">
+        You spent <b>{{seconds}}</b> seconds on this page.
+      </script>
+
+      <script type='text/spacebars' name="users">
+        <ul class="users">
+          {{# if users.length }}
+            {{# each users }}
+              <li>
+                <img src="{{ user.picture.thumbnail }}">
+                <div>{{ user.username }}</div>
+              </li>
+              {{/each}}
+          {{ else }}
+            <li>Loading...</li>
+          {{/ if }}
+        </ul>
+      </script>
+
+      <h2>Example - ReactiveVar</h2>
       <div id="Example"></div>
 
 <pre><code data-language="html">You spent <b>{{seconds}}</b> seconds on this page.</code></pre>
-<pre><code data-language="javascript">var counter = new Blaze.Var(0);
+<pre><code data-language="javascript">var counter = new ReactiveVar(0);
 
 Template.example.helpers({
   seconds: function () {
@@ -63,18 +83,54 @@ Template.example.helpers({
 
 setInterval(function () {
   counter.set(counter.get() + 1);
-}, 1000);</code></pre>
+}, 1000);
 
-    <script type='text/spacebars' name="example">
-      You spent <b>{{seconds}}</b> seconds on this page.
-    </script>
+// Render example
+Blaze.render(Template.example, document.getElementById('Example'));</code></pre>
+
+    <h2>Example - Ajax</h2>
+    <div id="Users"></div>
+
+<pre><code data-language="html"><ul class="users">
+  {{# if users.length }}
+    {{# each users }}
+      <li>
+        <img src="{{ user.picture.thumbnail }}">
+        <div>{{ user.username }}</div>
+      </li>
+    {{/each}}
+  {{ else }}
+    <li>Loading...</li>
+  {{/ if }}
+</ul>
+</code></pre>
+
+<pre><code data-language="javascript">var users = new ReactiveArray();
+
+Template.users.helpers({
+  users: function() {
+    return users.list();
+  }
+});
+
+Template.users.onRendered(function() {
+  jQuery.getJSON('http://api.randomuser.me', {
+    results: 10
+  }, function(data) {
+    users.set(data.results);
+  });
+});
+
+// Render Users
+Blaze.render(Template.users, document.getElementById('Users'));</code></pre>
 
     <script type="text/javascript">
 
         // Compile all Templates
         Blaze.compileTemplates();
 
-        var counter = new ReactiveVar(0);
+        var counter = new ReactiveVar(0),
+            users = new ReactiveArray();
 
         Template.example.helpers({
           seconds: function () {
@@ -82,12 +138,29 @@ setInterval(function () {
           }
         });
 
+        Template.users.helpers({
+          users: function() {
+            return users.list();
+          }
+        });
+
+        Template.users.onRendered(function() {
+          jQuery.getJSON('http://api.randomuser.me', {
+            results: 10
+          }, function(data) {
+            users.set(data.results);
+          });
+        });
+
         setInterval(function () {
           counter.set(counter.get() + 1);
         }, 1000);
 
-        // Render
+        // Render example
         Blaze.render(Template.example, document.getElementById('Example'));
+
+        // Render Users
+        Blaze.render(Template.users, document.getElementById('Users'));
       </script>
 
       <footer class="site-footer">

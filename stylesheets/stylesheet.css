@@ -201,3 +201,6 @@ a {
   font-size:25px;
   text-align:center;
 }
+
+#Users ul { overflow:hidden; list-style:none; padding:0px; margin:0px; }
+#Users li { float:left; width:200px; text-align:center; }
