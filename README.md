@@ -1,5 +1,5 @@
 # blaze
-Live HTML templates.
+Easy reactive templating.
 
 What you need to build your own `blaze`
 --------------------------------------
