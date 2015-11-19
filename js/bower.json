@@ -1,0 +1,22 @@
+{
+  "name": "blaze",
+  "homepage": "https://github.com/yasaricli/blaze",
+  "authors": [
+    "Yasar icli <hello@yasaricli.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "blaze": "~0.0.1",
+    "highlightjs": "~8.9.1"
+  }
+}

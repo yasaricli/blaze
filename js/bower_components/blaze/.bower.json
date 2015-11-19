@@ -1,0 +1,24 @@
+{
+  "name": "blaze",
+  "version": "0.0.1",
+  "main": "target/blaze.min.js",
+  "dependencies": {},
+  "ignore": [
+    ".*",
+    "*.json",
+    "src",
+    "examples",
+    "gulpfile.js"
+  ],
+  "homepage": "https://github.com/yasaricli/blaze",
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.1",
+    "commit": "e3679fc2e8159b23197d2f856fe72fdfbced1e41"
+  },
+  "_source": "git://github.com/yasaricli/blaze.git",
+  "_target": "~0.0.1",
+  "_originalSource": "blaze",
+  "_direct": true
+}
