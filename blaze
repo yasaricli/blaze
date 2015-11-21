@@ -1,0 +1,112 @@
+#!/usr/bin/env node
+
+// supported outside strict mode
+"use strict";
+
+// Included
+const argv = require('yargs').argv;
+const shell = require('shelljs');
+const _ = require('underscore');
+
+class Blaze {
+  constructor() {
+    this.APP_NAME = '.app';
+    this.PORT = '3000';
+    this.ROOT_URL = `http://localhost:${this.PORT}`;
+
+    this.FILES = [
+      'underscore.js',
+      'meteor.js',
+      'base64.js',
+      'ejson.js',
+      'check.js',
+      'babel-compiler.js',
+      'ecmascript.js',
+      'babel-runtime.js',
+      'ecmascript-runtime.js',
+      'promise.js',
+      'random.js',
+      'tracker.js',
+      'id-map.js',
+      'ordered-dict.js',
+      'mongo-id.js',
+      'diff-sequence.js',
+      'geojson-utils.js',
+      'minimongo.js',
+      'jquery.js',
+      'htmljs.js',
+      'html-tools.js',
+      'blaze-tools.js',
+      'observe-sequence.js',
+      'reactive-var.js',
+      'reactive-dict.js',
+      'spacebars-compiler.js',
+      'blaze.js',
+      'spacebars.js',
+      'templating.js'
+    ];
+
+    this.PACKAGES = [
+      'blaze-tools',
+      'html-tools',
+      'spacebars-compiler'
+    ];
+  }
+
+  server() {
+    // remove old app
+    shell.rm('-rf', this.APP_NAME);
+
+    // create application
+    shell.exec(`meteor create ${this.APP_NAME}`);
+
+    // cd application
+    shell.cd(this.APP_NAME);
+
+    // add extra packages
+    shell.exec('meteor add ' + this.PACKAGES.join(' '));
+
+    // Run App
+    shell.exec(`meteor --port ${this.PORT}`);
+  }
+
+  download() {
+    shell.cd('src');
+
+    // all files for each
+    _.forEach(this.FILES, (file) => {
+
+      // old file remove
+      shell.rm(file);
+
+      // new file download
+      shell.exec(this.getPackage(file));
+    }, this);
+  }
+
+  getPackage(name) {
+    return `wget ${this.ROOT_URL}/packages/${name}`;
+  }
+
+  getVersion() {
+    return shell.exec('meteor --version', { silent: true }).output;
+  }
+}
+
+
+// Blaze Object
+const blaze = new Blaze();
+
+// Update blaze.
+if (argv.server) {
+
+  // Build blaze
+  blaze.server();
+}
+
+// Update blaze.
+if (argv.download) {
+
+  // Build blaze
+  blaze.download();
+}

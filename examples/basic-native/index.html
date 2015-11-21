@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Blaze</title>
+
+    <!-- JAVASCRIPT -->
+    <script src="../../src/main.js"></script>
+    <script src="../../src/underscore.js"></script>
+    <script src="../../src/meteor.js"></script>
+    <script src="../../src/base64.js"></script>
+    <script src="../../src/ejson.js"></script>
+    <script src="../../src/check.js"></script>
+    <script src="../../src/babel-compiler.js"></script>
+    <script src="../../src/ecmascript.js"></script>
+    <script src="../../src/babel-runtime.js"></script>
+    <script src="../../src/ecmascript-runtime.js"></script>
+    <script src="../../src/promise.js"></script>
+    <script src="../../src/random.js"></script>
+    <script src="../../src/id-map.js"></script>
+    <script src="../../src/ordered-dict.js"></script>
+    <script src="../../src/tracker.js"></script>
+    <script src="../../src/mongo-id.js"></script>
+    <script src="../../src/diff-sequence.js"></script>
+    <script src="../../src/geojson-utils.js"></script>
+    <script src="../../src/minimongo.js"></script>
+    <script src="../../src/jquery.js"></script>
+    <script src="../../src/htmljs.js"></script>
+    <script src="../../src/html-tools.js"></script>
+    <script src="../../src/blaze-tools.js"></script>
+    <script src="../../src/observe-sequence.js"></script>
+    <script src="../../src/reactive-var.js"></script>
+    <script src="../../src/reactive-dict.js"></script>
+    <script src="../../src/reactive-array.js"></script>
+    <script src="../../src/spacebars-compiler.js"></script>
+    <script src="../../src/blaze.js"></script>
+    <script src="../../src/spacebars.js"></script>
+    <script src="../../src/templating.js"></script>
+    <script src="../../src/initialize.js"></script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type='text/spacebars' name="main">
+      <div class="click-me">
+        <h1>Say Hello Native! Click Me</h1>
+      </div>
+    </script>
+
+    <script type="text/javascript">
+
+      // Compile all Templates
+      Blaze.compileTemplates();
+
+      Template.main.events({
+        'click .click-me': function(event, template) {
+          alert('Say Hello');
+        }
+      });
+
+      // Render
+      Blaze.render(Template.main, document.getElementById('main'));
+    </script>
+  </body>
+</html>

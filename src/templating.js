@@ -135,33 +135,51 @@ Template["__dynamic"] = new Template("Template.__dynamic", (function() {        
   }), "\n  ", Blaze.If(function() {                                                                             // 7
     return Spacebars.call(view.lookup("dataContextPresent"));                                                   // 8
   }, function() {                                                                                               // 9
-    return [ "\n    ", Spacebars.include(view.lookupTemplate("__dynamicWithDataContext")), "\n  " ];            // 10
-  }, function() {                                                                                               // 11
-    return [ "\n    \n    ", Blaze._TemplateWith(function() {                                                   // 12
-      return {                                                                                                  // 13
-        template: Spacebars.call(view.lookup("template")),                                                      // 14
-        data: Spacebars.call(view.lookup(".."))                                                                 // 15
-      };                                                                                                        // 16
-    }, function() {                                                                                             // 17
-      return Spacebars.include(view.lookupTemplate("__dynamicWithDataContext"));                                // 18
-    }), "\n  " ];                                                                                               // 19
-  }) ];                                                                                                         // 20
-}));                                                                                                            // 21
-                                                                                                                // 22
-Template.__checkName("__dynamicWithDataContext");                                                               // 23
-Template["__dynamicWithDataContext"] = new Template("Template.__dynamicWithDataContext", (function() {          // 24
-  var view = this;                                                                                              // 25
-  return Spacebars.With(function() {                                                                            // 26
-    return Spacebars.dataMustache(view.lookup("chooseTemplate"), view.lookup("template"));                      // 27
-  }, function() {                                                                                               // 28
-    return [ "\n    ", Blaze._TemplateWith(function() {                                                         // 29
-      return Spacebars.call(Spacebars.dot(view.lookup(".."), "data"));                                          // 30
-    }, function() {                                                                                             // 31
-      return Spacebars.include(view.lookupTemplate(".."));                                                      // 32
-    }), "    \n  " ];                                                                                           // 33
-  });                                                                                                           // 34
-}));                                                                                                            // 35
-                                                                                                                // 36
+    return [ "\n    ", Spacebars.include(view.lookupTemplate("__dynamicWithDataContext"), function() {          // 10
+      return Blaze._InOuterTemplateScope(view, function() {                                                     // 11
+        return Spacebars.include(function() {                                                                   // 12
+          return Spacebars.call(view.templateContentBlock);                                                     // 13
+        });                                                                                                     // 14
+      });                                                                                                       // 15
+    }), "\n  " ];                                                                                               // 16
+  }, function() {                                                                                               // 17
+    return [ "\n    \n    ", Blaze._TemplateWith(function() {                                                   // 18
+      return {                                                                                                  // 19
+        template: Spacebars.call(view.lookup("template")),                                                      // 20
+        data: Spacebars.call(view.lookup(".."))                                                                 // 21
+      };                                                                                                        // 22
+    }, function() {                                                                                             // 23
+      return Spacebars.include(view.lookupTemplate("__dynamicWithDataContext"), function() {                    // 24
+        return Blaze._InOuterTemplateScope(view, function() {                                                   // 25
+          return Spacebars.include(function() {                                                                 // 26
+            return Spacebars.call(view.templateContentBlock);                                                   // 27
+          });                                                                                                   // 28
+        });                                                                                                     // 29
+      });                                                                                                       // 30
+    }), "\n  " ];                                                                                               // 31
+  }) ];                                                                                                         // 32
+}));                                                                                                            // 33
+                                                                                                                // 34
+Template.__checkName("__dynamicWithDataContext");                                                               // 35
+Template["__dynamicWithDataContext"] = new Template("Template.__dynamicWithDataContext", (function() {          // 36
+  var view = this;                                                                                              // 37
+  return Spacebars.With(function() {                                                                            // 38
+    return Spacebars.dataMustache(view.lookup("chooseTemplate"), view.lookup("template"));                      // 39
+  }, function() {                                                                                               // 40
+    return [ "\n    \n    ", Blaze._TemplateWith(function() {                                                   // 41
+      return Spacebars.call(Spacebars.dot(view.lookup(".."), "data"));                                          // 42
+    }, function() {                                                                                             // 43
+      return Spacebars.include(view.lookupTemplate(".."), function() {                                          // 44
+        return Blaze._InOuterTemplateScope(view, function() {                                                   // 45
+          return Spacebars.include(function() {                                                                 // 46
+            return Spacebars.call(view.templateContentBlock);                                                   // 47
+          });                                                                                                   // 48
+        });                                                                                                     // 49
+      });                                                                                                       // 50
+    }), "\n  " ];                                                                                               // 51
+  });                                                                                                           // 52
+}));                                                                                                            // 53
+                                                                                                                // 54
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }).call(this);
