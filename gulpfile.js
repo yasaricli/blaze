@@ -45,6 +45,7 @@ var gulp = require('gulp'),
       ' * <%= package.name %> - <%= package.description %>',
       ' * @version v<%= package.version %>',
       ' * @link <%= package.repository.url %>',
+      ' * @meteor 1.2.1',
       ' */',
       ''].join('\n');
 
