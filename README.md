@@ -1,4 +1,4 @@
-# blaze
+# Blaze
 Use Blaze templates with Tracker reactive data binding from any web application.
 
 ## Installation for your projects
