@@ -51,3 +51,16 @@ gulp
 ```
 
 At this point, you should now have a `build/` directory populated with everything you need to use Blaze.
+
+
+#### Update current version meteor:
+
+```sh
+./blaze --server
+```
+
+#### Download starting server files.
+
+```sh
+./blaze --download
+```
