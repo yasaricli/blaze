@@ -9,6 +9,7 @@
   root.HTML = Package.htmljs.HTML;
   root.Template = Template = Package.templating.Template;
   root.Spacebars = Package.spacebars.Spacebars;
+  root.Tracker = Package.tracker.Tracker;
   root.SpacebarsCompiler = Package['spacebars-compiler'].SpacebarsCompiler;
 
   // Observables
