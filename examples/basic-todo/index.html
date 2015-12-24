@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Todos</title>
+
+    <script src="../../build/blaze.min.js"></script>
+    <link rel="stylesheet" media="screen" href="./styles.css">
+  </head>
+
+  <body>
+    <div id="Todo"></div>
+
+    <script type='text/spacebars' name="todo">
+      {{> list}}
+      {{> add}}
+    </script>
+
+    <script type='text/spacebars' name="list">
+      <h1>Todo</h1>
+      <ul>
+        {{#each list}}
+          <li class="{{# if done }}done{{/if}}">
+            <input type="checkbox" class="done" {{ isChecked }}>
+            <span>{{ title }}</span>
+            {{# if done }}
+              <a href="#" class="remove">Remove</a>
+            {{/if}}
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+
+    <script type='text/spacebars' name="add">
+      <form>
+        <input type="text" id="title">
+        <button>Add</button>
+      </form>
+    </script>
+
+    <script type="text/javascript">
+      var Todos = new Collection('todos');
+
+      // migrations data
+      Todos.insert({ title: 'test', done: true });
+      Todos.insert({ title: 'out for lunch', done: false });
+
+      // Compile all Templates
+      Blaze.compileTemplates();
+
+      Template.list.events({
+        'change .done': function(event, template) {
+
+          // update
+          Todos.update(this._id, {
+            $set: {
+              done: event.currentTarget.checked
+            }
+          });
+        },
+        'click .remove': function(event) {
+          event.preventDefault();
+
+          // remove
+          Todos.remove(this._id);
+        }
+      });
+
+      Template.list.helpers({
+        list: function() {
+          return Todos.find()
+        },
+
+        isChecked: function() {
+          return this.done ? { checked: true } : {};
+        }
+      });
+
+      Template.add.events({
+        'submit form': function(event, template) {
+          var title = $.trim(template.find('#title').value);
+
+          event.preventDefault();
+
+          // new todo
+          if (title) {
+            Todos.insert({
+              title: title,
+              done: false
+            });
+
+            // reset
+            event.currentTarget.reset();
+          }
+        }
+      });
+
+      // Render
+      Blaze.render(Template.todo, document.getElementById('Todo'));
+    </script>
+  </body>
+</html>

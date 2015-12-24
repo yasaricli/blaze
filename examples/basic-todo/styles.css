@@ -1,0 +1,20 @@
+/* CSS declarations go here */
+.wrapper {
+    width: 960px;
+    margin: 10px auto;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 0.5em;
+}
+ul li:hover {
+    background: #f1f1f1;
+}
+
+.done span {
+  text-decoration: line-through;
+}
