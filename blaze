@@ -11,7 +11,7 @@ const _ = require('underscore');
 class Blaze {
   constructor() {
     this.APP_NAME = '.app';
-    this.PORT = '3000';
+    this.PORT = argv.port ? argv.port : '3000';
     this.ROOT_URL = `http://localhost:${this.PORT}`;
 
     this.FILES = [
